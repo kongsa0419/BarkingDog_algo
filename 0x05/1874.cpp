@@ -13,64 +13,55 @@ using namespace std;
 
 void run(){
     /* code HERE */
-    /**
-     * if (stack.top() < v[i]) : stack.push() until v[i]
-     * else if (stack.top() == v[i]) : stack.pop() & continue;
-     * else : cannot make permutation(순열)
-     */
-
-    int n, i, j, x;
-    bool status = true;
-    vector<int> v;
-    vector<char> ret;
-    stack<int> s;
+    int i, j, n, status;
+    char ch;
 
     cin >> n;
-    v.reserve(n);               //  capacity (n)
-    ret.reserve(2 * n + 5);
+    vector<int> v, ret;
+    v.reserve(n); // capacity = (n)
+    ret.reserve(2*n + 5);
+    stack<int> s;
     for (i=0; i<n; i++) {
-        cin >> v[i];            // original input (permutation)
+        cin >> v[i]; // wrong?
     }
 
-    //  main
-    i = 0;  // permutation index
-    j = 1;  // stack.top()
-    do {
-        while (j <= n && i < n && j <= v[i]) {
-            s.push(j++);
-            ret.push_back('+');
-        }
-        if (!s.empty() && i < n && s.top() > v[i]) {
-            status = false;  // error
+    // main logic
+    i = 0; // pointer to i = (v input order: index)
+    j = 1; // ascending order for input to stack
+    status = 1; // game status = continue
+    while (status) {
+        if (i == n && j == n+1) {
             break;
-        } else if (!s.empty() && i < n && s.top() == v[i]) {
-            while (!s.empty() && i < n && s.top() == v[i]) {
-                s.pop();
-                ret.push_back('-');
-                i++;
-            }
-            if (j > n && i == n) {
-                break; // successfuly end
-            }
         }
-        
-        if (i >= n || j > n) {
-            status = false;  //  error
+        while (j <= n && j <= v[i]) {
+            s.push(j++);
+            ret.emplace_back('+');
         }
-    } while (status);
+        if (s.empty()) {
+            status = 0;
+            break;
+        }
+        while (!s.empty() && (i < n) &&  (v[i] == s.top())) {
+            s.pop();
+            ret.emplace_back('-');
+            i++;
+        }
+        if (!s.empty() && s.top() > v[i]) {
+            status = 0;
+            break;
+        }
+    }
 
-    if (status) {
-        for (const auto& ch : ret) {
+    if (!status) {
+        cout << "NO\n";
+    } else {
+        for(char ch : ret) { // wrongable
             cout << ch << '\n';
         }
-    } else { 
-        cout << "NO\n";
     }
 
     return;
 }
-
-
 int main(void){
     PRE_PROC
     run();

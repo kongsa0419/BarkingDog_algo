@@ -46,8 +46,6 @@ void run(){
             res = d.z;
             break;
         }
-        // vis[d.y][d.x] = 1;
-        // if (len[d.y][d.x] > d.z) len[d.y][d.x] = d.z;      
         for (int k=0; k<4; k++) {
             int ny = d.y + dy[k];
             int nx = d.x + dx[k];

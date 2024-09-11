@@ -32,7 +32,6 @@ void run(){
         cin >> x;
         v.push_back(x);
         int idx = min_idx(v);
-        // cout << idx << endl;
         cout << v[idx] << ' ';
         if (v.size() == L) {
             v.pop_front();

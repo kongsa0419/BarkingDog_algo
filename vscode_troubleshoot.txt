@@ -1,0 +1,10 @@
+#1 code-runner with bash shell : cannot find correct path to the file
+{
+In this point, it happened when you changed default shell from Powershell. 
+"bash shell doesn't know Windows path."
+
+So, you just make 'code-runner' settings like this.
+"code-runner.terminalRoot": "/"
+
+ref: https://stackoverflow.com/questions/59911151/vs-code-code-runner-c-with-wrong-command-in-terminal
+}

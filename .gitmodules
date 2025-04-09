@@ -1,0 +1,3 @@
+[submodule "inflearn-PS-practice"]
+	path = inflearn-PS-practice
+	url = git@github.com:kongsa0419/inflearn-PS-practice.git
